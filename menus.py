@@ -1,4 +1,7 @@
 import os
+from datetime import datetime
+
+from analytics import Analytics
 
 def display_inventory(inventory):
     print("\n=== Inventory ===")
