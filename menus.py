@@ -42,16 +42,40 @@ def cart_menu(user):
         choice = input("\nEnter your choice: ")
 
         if choice == '1':
-            pass
+            sku = input("Enter SKU: ")
+            item = user.inventory.items.get(sku)
+            if item and user.inventory.check_availability(sku):
+                qty = int(input("Quantity: "))
+                user.cart.add_item(item, qty)
+            else:
+                print("Item not available!")
+            input("\nPress Enter to continue...")
 
         elif choice == '2':
-            pass
+            sku = input("Enter SKU to remove: ")
+            user.cart.remove_item(sku)
+            input("\nPress Enter to continue...")
 
         elif choice == '3':
-            pass
+            print("\nCurrent Cart:")
+            print(user.cart.generate_receipt())
+            input("\nPress Enter to continue...")
 
         elif choice == '4':
-            pass
+            print("\n--- Receipt ---")
+            print(user.cart.generate_receipt())
+            total = user.cart.calculate_total()
+
+            for item, qty in user.cart.items:
+                if user.inventory.check_availability(item.SKU, qty):
+                    user.inventory.update_item(item.SKU, quantity=item.quantity - qty)
+                else:
+                    print(f"Not enough {item.name} in stock!")
+
+            with open("transactions.csv", 'a') as f:
+                f.write(f"{datetime.now()},{user.current_user},{total}\n")
+            user.cart.clear_cart()
+            input("\nPress Enter to complete purchase...")
 
         elif choice == '5':
             return
