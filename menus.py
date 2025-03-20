@@ -19,11 +19,11 @@ def main_menu(user):
         print("4. Logout")
         choice = input("\nEnter your choice: ")
         if choice == '1':
-            pass
+            cart_menu(user)
         elif choice == '2':
-            pass
+            inventory_menu(user)
         elif choice == '3':
-            pass
+            analytics_menu(user)
         elif choice == '4':
             return
         else:
