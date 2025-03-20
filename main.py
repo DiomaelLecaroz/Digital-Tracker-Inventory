@@ -15,8 +15,7 @@ def main():
         print("3. Exit")
         choice = input("\nEnter your choice: ")
 
-        if choice == '1':
-            user.login()
+        if choice == '1' and user.login():
             main_menu(user)
             user.logout()
         elif choice == '2':
