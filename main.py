@@ -1,6 +1,9 @@
 import os
+from user import User
 
 def main():
+    init_files()
+    user = User
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         print("\n=== Stockwise Inventory System ===")
@@ -13,6 +16,7 @@ def main():
             pass
         elif choice == '2':
             pass
+            user.register()
         elif choice == '3':
             break
         else:
