@@ -1,6 +1,6 @@
 import os
 from user import User
-from utils import init_files()
+from utils import init_files
 from menus import main_menu
 
 def main():
