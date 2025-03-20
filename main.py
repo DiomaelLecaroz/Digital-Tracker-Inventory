@@ -1,6 +1,6 @@
 import os
 from user import User
-
+from utils import init_files()
 def main():
     init_files()
     user = User
@@ -13,7 +13,7 @@ def main():
         choice = input("\nEnter your choice: ")
 
         if choice == '1':
-            pass
+            user.login()
         elif choice == '2':
             user.register()
         elif choice == '3':
