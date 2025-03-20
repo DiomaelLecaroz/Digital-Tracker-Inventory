@@ -15,7 +15,6 @@ def main():
         if choice == '1':
             pass
         elif choice == '2':
-            pass
             user.register()
         elif choice == '3':
             break
