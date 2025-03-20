@@ -109,4 +109,11 @@ def inventory_menu(user):
             print("Invalid choice!")
 
 def analytics_menu(user):
-    pass
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("\n=== Analytics Dashboard ===")
+    print(f"\nTotal Products in Inventory: {Analytics.get_total_product_count(user.inventory)}")
+    print(f"Total Inventory Value: ${Analytics.get_total_inventory_value(user.inventory):.2f}")
+    best = Analytics.get_highest_product_count(user.inventory)
+    if best:
+        print(f"\nMost Stocked Item: {best.name} (SKU: {best.SKU}, Qty: {best.quantity})")
+    input("\nPress Enter to return to main menu...")
