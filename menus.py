@@ -65,16 +65,45 @@ def inventory_menu(user):
         print("\nInventory Management:")
         print("1. Add New Item")
         print("2. Update Existing Item")
-        print("3. Return to Main Menu")
+        print("3. Delete Item")
+        print("4. Return to Main Menu")
         choice = input("\nEnter your choice: ")
 
         if choice == '1':
-            pass
+            sku = input("SKU: ")
+            name = input("Product Name: ")
+            qty = int(input("Initial Quantity: "))
+            price = float(input("Price: $"))
+            user.inventory.add_item(sku, name, qty, price)
+            input("\nItem added! Press Enter to continue...")
 
         elif choice == '2':
-            pass
-
+            sku = input("Enter SKU to update: ")
+            if sku in user.inventory.items:
+                qty = input("New Quantity (leave blank to skip): ")
+                price = input("New Price (leave blank to skip): $")
+                user.inventory.update_item(sku,
+                                          int(qty) if qty else None,
+                                          float(price) if price else None)
+                input("\nItem updated! Press Enter to continue...")
+            else:
+                print("Item not found!")
+                input("\nPress Enter to continue...")
+                
         elif choice == '3':
+            sku = input("Enter SKU to delete: ")
+            if sku in user.inventory.items:
+                confirm = input(f"Are you sure you want to delete item {sku}? (yes/no): ").strip().lower()
+                if confirm == 'yes':
+                    user.inventory.delete_item(sku)
+                    input("\nItem deleted! Press Enter to continue...")
+                else:
+                    input("\nDeletion canceled. Press Enter to continue...")
+            else:
+                print("Item not found!")
+                input("\nPress Enter to continue...")
+                
+        elif choice == '4':
             return
         else:
             print("Invalid choice!")
