@@ -1,9 +1,12 @@
 import os
 from user import User
 from utils import init_files()
+from menus import main_menu
+
 def main():
     init_files()
-    user = User
+    user = User()
+    
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         print("\n=== Stockwise Inventory System ===")
@@ -14,6 +17,8 @@ def main():
 
         if choice == '1':
             user.login()
+            main_menu(user)
+            user.logout()
         elif choice == '2':
             user.register()
         elif choice == '3':
